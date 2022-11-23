@@ -16,13 +16,13 @@ public class Customer {
     private String email;
     private int numberCompany;
     private boolean vegetarians;
-    private List<String> allergies;
+    private Allergies allergies;
 
     public Customer(String name,
                     String email,
                     int numberCompany,
                     boolean vegetarians,
-                    List<String> allergies) {
+                    Allergies allergies) {
         this.name = name;
         this.email = email;
         this.numberCompany = numberCompany;
