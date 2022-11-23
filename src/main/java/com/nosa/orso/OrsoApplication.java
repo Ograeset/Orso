@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class OrsoApplication {
 
@@ -17,21 +19,33 @@ public class OrsoApplication {
         SpringApplication.run(OrsoApplication.class, args);
     }
     @Bean
-    CommandLineRunner runner (CustomerRepository customerRepository, MongoTemplate mongoTemplate){
+    CommandLineRunner runner (CustomerRepository customerRepository){
         return args -> {
+
             Allergies allergies = new Allergies(
                     true,
                     false,
                     false,
                     false);
-            
+
             Customer customer = new Customer(
                     "Test Testsson",
                     "test@mail.com",
                     4,
                     true,
-                    allergies
+                    allergies,
+                    LocalDateTime.now()
             );
+
+            String name = "Test testson";
+
+            customerRepository.findCustomerByName(name)
+                    .ifPresentOrElse(c -> {
+                        System.out.println(c + " already exists");
+                    },() ->{
+                        System.out.println("Inserting customer " + customer);
+                        customerRepository.insert(customer);
+                    });
         };
     }
 }

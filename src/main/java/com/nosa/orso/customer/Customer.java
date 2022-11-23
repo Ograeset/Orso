@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @Document
@@ -21,7 +23,7 @@ public class Customer {
                     String email,
                     int numberCompany,
                     boolean vegetarians,
-                    Allergies allergies) {
+                    Allergies allergies, LocalDateTime now) {
         this.name = name;
         this.email = email;
         this.numberCompany = numberCompany;
