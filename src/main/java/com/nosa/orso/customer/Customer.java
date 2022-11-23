@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document
 public class Customer {
@@ -14,5 +16,17 @@ public class Customer {
     private String email;
     private int numberCompany;
     private boolean vegetarians;
+    private List<String> allergies;
 
+    public Customer(String name,
+                    String email,
+                    int numberCompany,
+                    boolean vegetarians,
+                    List<String> allergies) {
+        this.name = name;
+        this.email = email;
+        this.numberCompany = numberCompany;
+        this.vegetarians = vegetarians;
+        this.allergies = allergies;
+    }
 }
