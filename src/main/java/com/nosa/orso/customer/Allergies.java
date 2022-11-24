@@ -1,5 +1,8 @@
 package com.nosa.orso.customer;
 
+import lombok.Data;
+
+@Data
 public class Allergies {
     private boolean glutenAllergyToF;
     private boolean lactoseAllergyToF;

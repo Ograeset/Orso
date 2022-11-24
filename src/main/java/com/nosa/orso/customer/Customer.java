@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Document
 public class Customer {
 
+
     @Id
     private String id;
     private String name;
@@ -18,16 +19,18 @@ public class Customer {
     private int numberCompany;
     private boolean vegetarians;
     private Allergies allergies;
+    private final LocalDateTime created;
 
     public Customer(String name,
                     String email,
                     int numberCompany,
                     boolean vegetarians,
-                    Allergies allergies, LocalDateTime now) {
+                    Allergies allergies, LocalDateTime created) {
         this.name = name;
         this.email = email;
         this.numberCompany = numberCompany;
         this.vegetarians = vegetarians;
         this.allergies = allergies;
+        this.created = created;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.time.LocalDateTime;
 
@@ -37,6 +36,8 @@ public class OrsoApplication {
                     LocalDateTime.now()
             );
 
+//            String name = customer.getName();
+//            System.out.println(name);
             String name = "Test testson";
 
             customerRepository.findCustomerByName(name)
