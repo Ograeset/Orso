@@ -15,9 +15,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-
-    @Override
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    public List<Customer> save(Customer customer) {
+        return customerRepository.saveOrUpdate(customer);
     }
 }

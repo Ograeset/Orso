@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -27,12 +26,6 @@ public class CustomerController {
     public List<Customer> fetchAllCustomers(){
         return customerService.getAllCustomers();
     }
-
-//    @PostMapping("/save")
-//    public ResponseEntity<?> saveOrUpdateCustomer(@RequestBody Customer customer) {
-//        customerService.saveOrUpdateCustomer(ObjectMapperUtils.map(customer, Customer.class));
-//        return new ResponseEntity("Student added successfully", HttpStatus.OK);
-//    }
 
     @PostMapping("/saveCustomer")
     public ResponseEntity<Customer> save(@RequestBody Customer customer) {
