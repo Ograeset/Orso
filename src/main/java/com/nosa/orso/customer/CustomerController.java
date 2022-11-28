@@ -2,10 +2,11 @@ package com.nosa.orso.customer;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,4 +27,27 @@ public class CustomerController {
     public List<Customer> fetchAllCustomers(){
         return customerService.getAllCustomers();
     }
+
+//    @PostMapping("/save")
+//    public ResponseEntity<?> saveOrUpdateCustomer(@RequestBody Customer customer) {
+//        customerService.saveOrUpdateCustomer(ObjectMapperUtils.map(customer, Customer.class));
+//        return new ResponseEntity("Student added successfully", HttpStatus.OK);
+//    }
+
+    @PostMapping("/saveCustomer")
+    public ResponseEntity<Customer> save(@RequestBody Customer customer) {
+        customerService.save(new Customer(
+                        customer.getName(),
+                        customer.getEmail(),
+                        customer.getNumberCompany(),
+                        customer.isVegetarians(),
+                        new Allergies(customer.getAllergies().isGlutenAllergyToF(),
+                            customer.getAllergies().isLactoseAllergyToF(),
+                            customer.getAllergies().isEggAllergyToF(),
+                            customer.getAllergies().isNutAllergyToF()),
+                        customer.getCreated()));
+        return new ResponseEntity("Customer added successfully " + customer, HttpStatus.OK);
+    }
 }
+
+

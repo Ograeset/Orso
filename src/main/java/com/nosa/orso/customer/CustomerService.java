@@ -14,4 +14,10 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+
+
+    @Override
+    public Customer save(Customer customer) {
+        return customerRepository.save(customer);
+    }
 }
