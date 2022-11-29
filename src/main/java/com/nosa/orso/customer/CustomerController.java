@@ -37,10 +37,11 @@ public class CustomerController {
                         customer.getEmail(),
                         customer.getNumberCompany(),
                         customer.isVegetarians(),
-                        new Allergies(customer.getAllergies().isGlutenAllergyToF(),
-                            customer.getAllergies().isLactoseAllergyToF(),
-                            customer.getAllergies().isEggAllergyToF(),
-                            customer.getAllergies().isNutAllergyToF()),
+                        new Allergies(
+                                customer.getAllergies().isGlutenAllergyToF(),
+                                customer.getAllergies().isLactoseAllergyToF(),
+                                customer.getAllergies().isEggAllergyToF(),
+                                customer.getAllergies().isNutAllergyToF()),
                         customer.getCreated()));
         return new ResponseEntity("Customer added successfully " + customer, HttpStatus.OK);
     }

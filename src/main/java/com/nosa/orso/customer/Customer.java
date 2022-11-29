@@ -1,5 +1,6 @@
 package com.nosa.orso.customer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -34,5 +35,18 @@ public class Customer {
         this.vegetarians = vegetarians;
         this.allergies = allergies;
         this.created = created;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", numberCompany=" + numberCompany +
+                ", vegetarians=" + vegetarians +
+                ", allergies=" + allergies +
+                ", created=" + created +
+                '}';
     }
 }

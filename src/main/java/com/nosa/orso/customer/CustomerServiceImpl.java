@@ -16,10 +16,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer saveCustomer(Customer customer){
-       /* Optional<Customer> savedCustomer = customerRepository.findbyEmail(customer.getEmail());
-        if(savedCustomer.isPresent()){
-            throw new ResourceNotFoundException("Customer already exist with given email" + customer.getEmail());
-        }*/
+//       Optional<Customer> savedCustomer = customerRepository.findbyEmail(customer.getEmail());
+//        if(savedCustomer.isPresent()){
+//            throw new ResourceNotFoundException("Customer already exist with given email" + customer.getEmail());
+//        }
         return customerRepository.save(customer);
     }
     @Override
