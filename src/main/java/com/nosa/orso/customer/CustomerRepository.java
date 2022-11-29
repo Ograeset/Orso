@@ -10,6 +10,5 @@ public interface CustomerRepository extends MongoRepository <Customer, String>{
 
     Optional<Customer> findCustomerByName(String name);
 
-    List<Customer> saveOrUpdate(Customer customer);
-
+    List<Customer> saveCustomer(Customer customer);
 }

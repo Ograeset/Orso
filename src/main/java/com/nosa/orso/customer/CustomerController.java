@@ -4,18 +4,21 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("customer")
 public class CustomerController {
 
-    @Autowired
     private final CustomerService customerService;
 
+    @Autowired
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("/testing")
     public String testing() {
@@ -28,7 +31,7 @@ public class CustomerController {
     }
 
     @PostMapping("/saveCustomer")
-    public ResponseEntity<Customer> save(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
         customerService.save(new Customer(
                         customer.getName(),
                         customer.getEmail(),
