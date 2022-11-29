@@ -1,21 +1,27 @@
 package com.nosa.orso.customer;
 
-import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor
-public class CustomerService {
 
-    private final CustomerRepository customerRepository;
+public interface CustomerService {
+        Customer saveCustomer(Customer customer);
+        List<Customer> getAllCustomers();
+        Optional<Customer> getCustomerById (String id);
+        Customer updateCustomer(Customer updateCustomer);
+        void deleteCustomer(String id);
 
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    public List<Customer> save(Customer customer) {
-        return customerRepository.saveCustomer(customer);
-    }
+//    private final CustomerRepository customerRepository;
+//
+//     List<Customer> getAllCustomers() {
+//        return customerRepository.findAll();
+//    }
+//
+//    public List<Customer> save(Customer customer) {
+//        return customerRepository.saveCustomer(customer);
+//    }
 }
