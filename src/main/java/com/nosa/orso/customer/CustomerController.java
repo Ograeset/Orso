@@ -32,7 +32,7 @@ public class CustomerController {
 
     @PostMapping("/saveCustomer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-        customerService.save(new Customer(
+        customerService.saveCustomer(new Customer(
                         customer.getName(),
                         customer.getEmail(),
                         customer.getNumberCompany(),

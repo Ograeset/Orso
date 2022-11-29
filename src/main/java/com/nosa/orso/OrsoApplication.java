@@ -28,7 +28,7 @@ public class OrsoApplication {
                     false);
 
             Customer customer = new Customer(
-                    "Test T Testsson",
+                    "Test Testsson",
                     "test@mail.com",
                     4,
                     true,
@@ -36,15 +36,15 @@ public class OrsoApplication {
                     LocalDateTime.now()
             );
 
-            String name = "Test testson";
+            String name = "Test Testson";
 
-           /* customerRepository.findCustomerByName(name)
+            customerRepository.findCustomerByName(name)
                     .ifPresentOrElse(c -> {
                         System.out.println(c + " already exists");
                     },() ->{
                         System.out.println("Inserting customer " + customer);
                         customerRepository.insert(customer);
-                    });*/
+                    });
         };
     }
 }
