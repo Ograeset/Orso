@@ -38,13 +38,13 @@ public class OrsoApplication {
 
             String name = "Test testson";
 
-            customerRepository.findCustomerByName(name)
+           /* customerRepository.findCustomerByName(name)
                     .ifPresentOrElse(c -> {
                         System.out.println(c + " already exists");
                     },() ->{
                         System.out.println("Inserting customer " + customer);
                         customerRepository.insert(customer);
-                    });
+                    });*/
         };
     }
 }
