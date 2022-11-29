@@ -28,7 +28,7 @@ public class OrsoApplication {
                     false);
 
             Customer customer = new Customer(
-                    "Test Testsson",
+                    "Test T Testsson",
                     "test@mail.com",
                     4,
                     true,
