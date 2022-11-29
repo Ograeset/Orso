@@ -36,8 +36,6 @@ public class OrsoApplication {
                     LocalDateTime.now()
             );
 
-//            String name = customer.getName();
-//            System.out.println(name);
             String name = "Test testson";
 
             customerRepository.findCustomerByName(name)

@@ -21,11 +21,13 @@ public class Customer {
     private Allergies allergies;
     private final LocalDateTime created;
 
+
     public Customer(String name,
                     String email,
                     int numberCompany,
                     boolean vegetarians,
-                    Allergies allergies, LocalDateTime created) {
+                    Allergies allergies,
+                    LocalDateTime created) {
         this.name = name;
         this.email = email;
         this.numberCompany = numberCompany;
