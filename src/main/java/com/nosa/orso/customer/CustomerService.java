@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public interface CustomerService {
         Customer saveCustomer(Customer customer);
         List<Customer> getAllCustomers();
-        Optional<Customer> getCustomerById (String id);
+        Customer getCustomerById (String id);
         Customer updateCustomer(Customer updateCustomer);
         void deleteCustomer(String id);
 

@@ -14,10 +14,11 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
-
+    private final CustomerRepository customerRepository;
     @Autowired
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
         this.customerService = customerService;
+        this.customerRepository = customerRepository;
     }
 
     @GetMapping("/testing")
@@ -45,10 +46,10 @@ public class CustomerController {
                         customer.getCreated()));
         return new ResponseEntity("Customer added successfully " + customer, HttpStatus.OK);
     }
-/*
+
    @PutMapping("/updateCustomer/{id}")
     public ResponseEntity <Customer>  updateCustomer(@PathVariable String id, @RequestBody Customer customerDetails){
-        Customer updateCustomer = customerRepository.findById(id);
+       Customer updateCustomer = customerRepository.getCustomerById(id);
 
        updateCustomer.setName(customerDetails.getName());
        updateCustomer.setEmail(customerDetails.getEmail());
@@ -57,9 +58,7 @@ public class CustomerController {
        customerRepository.save(updateCustomer);
 
        return ResponseEntity.ok(updateCustomer);
-
     }
- */
 }
 
 
