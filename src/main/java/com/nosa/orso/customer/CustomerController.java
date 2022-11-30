@@ -45,6 +45,22 @@ public class CustomerController {
                         customer.getCreated()));
         return new ResponseEntity("Customer added successfully " + customer, HttpStatus.OK);
     }
+/*
+   @PutMapping("/updateCustomer/{id}")
+    public ResponseEntity <Customer>  updateCustomer(@PathVariable String id, @RequestBody Customer customerDetails){
+        Customer updateCustomer = customerRepository.findById(id);
+
+       updateCustomer.setName(customerDetails.getName());
+       updateCustomer.setEmail(customerDetails.getEmail());
+       updateCustomer.setNumberCompany(customerDetails.getNumberCompany());
+
+       customerRepository.save(updateCustomer);
+
+       return ResponseEntity.ok(updateCustomer);
+*/
+
+
+    }
 }
 
 
