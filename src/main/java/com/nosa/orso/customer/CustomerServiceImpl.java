@@ -56,8 +56,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(String id) {
+    public ResponseEntity<HttpStatus> deleteCustomer(String id) {
         customerRepository.deleteById(id);
+        return null;
     }
 
 

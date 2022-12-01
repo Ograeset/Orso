@@ -1,6 +1,7 @@
 package com.nosa.orso.customer;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
@@ -12,7 +13,7 @@ public interface CustomerService {
         List<Customer> getAllCustomers();
         Optional<Customer> getCustomerById (String id);
         ResponseEntity updateCustomer(Customer updateCustomer);
-        void deleteCustomer(String id);
+        ResponseEntity<HttpStatus> deleteCustomer(String id);
 
 //    private final CustomerRepository customerRepository;
 //
