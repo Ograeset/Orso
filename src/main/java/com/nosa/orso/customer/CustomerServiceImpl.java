@@ -1,6 +1,8 @@
 package com.nosa.orso.customer;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +17,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer saveCustomer(Customer customer){
-//       Optional<Customer> savedCustomer = customerRepository.findbyEmail(customer.getEmail());
-//        if(savedCustomer.isPresent()){
-//            throw new ResourceNotFoundException("Customer already exist with given email" + customer.getEmail());
-//        }
-        return customerRepository.save(customer);
+    public ResponseEntity <Customer> saveCustomer(Customer customer){
+        Customer _customer = customerRepository.save(new Customer(
+                customer.getName(),
+                customer.getEmail(),
+                customer.getNumberCompany(),
+                customer.isVegetarians(),
+                new Allergies(
+                        customer.getAllergies().isGlutenAllergyToF(),
+                        customer.getAllergies().isLactoseAllergyToF(),
+                        customer.getAllergies().isEggAllergyToF(),
+                        customer.getAllergies().isNutAllergyToF()),
+                customer.getCreated()));
+        return new ResponseEntity("Customer added successfully " + _customer, HttpStatus.OK);
     }
     @Override
     public List<Customer> getAllCustomers() {

@@ -1,15 +1,14 @@
 package com.nosa.orso.customer;
 
 
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-
 public interface CustomerService {
-        Customer saveCustomer(Customer customer);
+        ResponseEntity saveCustomer(Customer customer);
         List<Customer> getAllCustomers();
         Optional<Customer> getCustomerById (String id);
         Customer updateCustomer(Customer updateCustomer);
