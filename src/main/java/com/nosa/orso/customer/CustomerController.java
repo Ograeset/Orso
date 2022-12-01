@@ -13,11 +13,11 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private final CustomerService customerService;
+    //private final CustomerService customerService;
     private final CustomerRepository customerRepository;
     @Autowired
-    public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
-        this.customerService = customerService;
+    public CustomerController(/*CustomerService customerService*/ CustomerRepository customerRepository) {
+        //this.customerService = customerService;
         this.customerRepository = customerRepository;
     }
 
@@ -28,12 +28,12 @@ public class CustomerController {
 
     @GetMapping("/getAllCustomers")
     public List<Customer> fetchAllCustomers(){
-        return customerService.getAllCustomers();
+        return customerRepository.getAllCustomers();
     }
 
     @PostMapping("/saveCustomer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-        customerService.saveCustomer(new Customer(
+        customerRepository.saveCustomer(new Customer(
                         customer.getName(),
                         customer.getEmail(),
                         customer.getNumberCompany(),
@@ -59,6 +59,8 @@ public class CustomerController {
 
        return ResponseEntity.ok(updateCustomer);
     }
+
+    //TODO Fråga Kristoffer om customerRepository/customerService
 }
 
 
