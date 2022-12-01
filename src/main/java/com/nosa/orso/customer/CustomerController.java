@@ -32,18 +32,7 @@ public class CustomerController {
 
     @PostMapping("/saveCustomer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-        customerService.saveCustomer(new Customer(
-                        customer.getName(),
-                        customer.getEmail(),
-                        customer.getNumberCompany(),
-                        customer.isVegetarians(),
-                        new Allergies(
-                                customer.getAllergies().isGlutenAllergyToF(),
-                                customer.getAllergies().isLactoseAllergyToF(),
-                                customer.getAllergies().isEggAllergyToF(),
-                                customer.getAllergies().isNutAllergyToF()),
-                        customer.getCreated()));
-        return new ResponseEntity("Customer added successfully " + customer, HttpStatus.OK);
+        return customerService.saveCustomer(customer);
     }
 /*
    @PutMapping("/updateCustomer/{id}")
