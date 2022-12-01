@@ -34,21 +34,15 @@ public class CustomerController {
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
         return customerService.saveCustomer(customer);
     }
-/*
-   @PutMapping("/updateCustomer/{id}")
-    public ResponseEntity <Customer>  updateCustomer(@PathVariable String id, @RequestBody Customer customerDetails){
-        Customer updateCustomer = customerRepository.findById(id);
 
-       updateCustomer.setName(customerDetails.getName());
-       updateCustomer.setEmail(customerDetails.getEmail());
-       updateCustomer.setNumberCompany(customerDetails.getNumberCompany());
+   @PutMapping("/updateCustomer")
+    public ResponseEntity <Customer>  updateCustomer(/*@PathVariable String id,*/ @RequestBody Customer customer){
 
-       customerRepository.save(updateCustomer);
+        return customerService.updateCustomer(customer);
 
-       return ResponseEntity.ok(updateCustomer);
 
     }
- */
+
 }
 
 

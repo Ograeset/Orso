@@ -42,8 +42,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer updatedCustomer) {
-        return customerRepository.save(updatedCustomer);
+    public ResponseEntity <Customer> updateCustomer(Customer customerDetails) {
+        customerDetails.setName(customerDetails.getName());
+        customerDetails.setEmail(customerDetails.getEmail());
+        customerDetails.setNumberCompany(customerDetails.getNumberCompany());
+        customerDetails.setVegetarians(customerDetails.isVegetarians());
+        //TODO add allergies
+
+
+
+
+        return new ResponseEntity("Customer updated successfully " + customerDetails, HttpStatus.OK);
     }
 
     @Override

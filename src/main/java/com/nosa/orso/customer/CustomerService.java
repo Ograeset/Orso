@@ -11,7 +11,7 @@ public interface CustomerService {
         ResponseEntity saveCustomer(Customer customer);
         List<Customer> getAllCustomers();
         Optional<Customer> getCustomerById (String id);
-        Customer updateCustomer(Customer updateCustomer);
+        ResponseEntity updateCustomer(Customer updateCustomer);
         void deleteCustomer(String id);
 
 //    private final CustomerRepository customerRepository;
