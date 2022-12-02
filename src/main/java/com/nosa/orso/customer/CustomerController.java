@@ -49,6 +49,12 @@ public class CustomerController {
         return customerService.deleteCustomer(id);
     }
 
+    @GetMapping("/getCustomer/{id}")
+    public ResponseEntity<Customer> getCustomerById (@PathVariable(value = "id")String id){
+
+        return customerService.getCustomerById(id);
+    }
+
 }
 
 

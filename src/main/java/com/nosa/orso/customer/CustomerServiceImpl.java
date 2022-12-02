@@ -42,10 +42,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> getCustomerById(String id) {
-        return customerRepository.findById(id);
+    public ResponseEntity<Customer> getCustomerById(String id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow();
+        return ResponseEntity.ok().body(customer);
     }
-
 
 
     @Override
@@ -58,36 +59,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.save(updateCustomer);
         return ResponseEntity.ok(updateCustomer);
     }
-   /* @Override
-    public ResponseEntity <Customer> updateCustomer(String id, Customer customer) {
-        Optional<Customer> customerData = customerRepository.findById(id);
-        System.out.println("53 " + id);
-        System.out.println("54 " + customer);
-        System.out.println("55 " + customerData);
-        System.out.println("56 " + customerRepository.findById("6389cdea04b62e247618224f"));
-        if(customerData.isPresent()) {
-            Customer _customer = (customerData.get());
-            _customer.setName(customer.getName());
-            _customer.setEmail(customer.getEmail());
-
-
-            System.out.println("63 " + _customer); // Not same value as return
-//            _customer.getNumberCompany(customer.getNumberCompany());
-//            _customer.isVegetarians(customer.isVegetarians());
-            return new ResponseEntity<>(customerRepository.save(_customer), HttpStatus.OK);
-//            return new ResponseEntity<>(_customer, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-//        customerDetails.setName(customerDetails.getName());
-//        customerDetails.setEmail(customerDetails.getEmail());
-//        customerDetails.setNumberCompany(customerDetails.getNumberCompany());
-//        customerDetails.setVegetarians(customerDetails.isVegetarians());
-        //TODO add allergies
-
-//        return new ResponseEntity("Customer updated successfully " + customerDetails, HttpStatus.OK);
-    }*/
 
     @Override
     public ResponseEntity<HttpStatus> deleteCustomer(String id) {
