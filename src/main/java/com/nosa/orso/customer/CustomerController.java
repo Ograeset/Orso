@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customer")
@@ -35,9 +37,22 @@ public class CustomerController {
         return customerService.saveCustomer(customer);
     }
 
-   @PutMapping("/updateCustomer")
-    public ResponseEntity<Customer> updateCustomer(/*@PathVariable String id,*/ @RequestBody Customer customer){
-        return customerService.updateCustomer(customer);
+   @PutMapping("/updateCustomer/{id}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable String id, @RequestBody Customer customer){
+       Optional<Customer> customerData = customerService.getCustomerById(id);
+
+       if(customerData.isPresent()) {
+           Customer _customer = customerData.get();
+           _customer.setName(customer.getName());
+           _customer.setEmail(customer.getEmail());
+//           _customer.getNumberCompany(customer.getNumberCompany());
+//           _customer.isVegetarians(customer.isVegetarians());
+           return new ResponseEntity(customerService.updateCustomer(_customer), HttpStatus.OK);
+       } else {
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       }
+
+//        return customerService.updateCustomer(customer);
     }
 
     @DeleteMapping("/deleteCustomer/{id}")
