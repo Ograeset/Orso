@@ -12,7 +12,7 @@ public interface CustomerService {
         ResponseEntity saveCustomer(Customer customer);
         List<Customer> getAllCustomers();
         Optional<Customer> getCustomerById (String id);
-        ResponseEntity updateCustomer(Customer updateCustomer);
+        ResponseEntity <Customer> updateCustomer(String id, Customer customer);
         ResponseEntity<HttpStatus> deleteCustomer(String id);
 
 //    private final CustomerRepository customerRepository;
