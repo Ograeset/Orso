@@ -49,6 +49,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
+    public ResponseEntity <Customer> updateCustomer(String id, Customer customerDetails){
+        Customer updateCustomer = customerRepository.findById(id)
+                        .orElseThrow();
+
+        updateCustomer.setName(customerDetails.getName());
+        updateCustomer.setEmail(customerDetails.getEmail());
+        customerRepository.save(updateCustomer);
+        return ResponseEntity.ok(updateCustomer);
+    }
+   /* @Override
     public ResponseEntity <Customer> updateCustomer(String id, Customer customer) {
         Optional<Customer> customerData = customerRepository.findById(id);
         System.out.println("53 " + id);
@@ -77,7 +87,7 @@ public class CustomerServiceImpl implements CustomerService {
         //TODO add allergies
 
 //        return new ResponseEntity("Customer updated successfully " + customerDetails, HttpStatus.OK);
-    }
+    }*/
 
     @Override
     public ResponseEntity<HttpStatus> deleteCustomer(String id) {
