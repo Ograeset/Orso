@@ -55,6 +55,11 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
+    @DeleteMapping("/deleteAllCustomers")
+    public ResponseEntity<HttpStatus> deleteAllCustomers(){
+        return customerService.deleteAllCustomers();
+    }
+
 }
 
 

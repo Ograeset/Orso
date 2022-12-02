@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface CustomerService {
         ResponseEntity saveCustomer(Customer customer);
@@ -14,14 +14,7 @@ public interface CustomerService {
         ResponseEntity<Customer> getCustomerById (String id);
         ResponseEntity <Customer> updateCustomer(String id, Customer customer);
         ResponseEntity<HttpStatus> deleteCustomer(String id);
+        ResponseEntity<HttpStatus> deleteAllCustomers();
 
-//    private final CustomerRepository customerRepository;
-//
-//     List<Customer> getAllCustomers() {
-//        return customerRepository.findAll();
-//    }
-//
-//    public List<Customer> save(Customer customer) {
-//        return customerRepository.saveCustomer(customer);
-//    }
+
 }
