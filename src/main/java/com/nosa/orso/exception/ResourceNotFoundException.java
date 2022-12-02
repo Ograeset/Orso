@@ -1,4 +1,4 @@
-package exception;
+package com.nosa.orso.exception;
 
 
 import org.springframework.http.HttpStatus;
