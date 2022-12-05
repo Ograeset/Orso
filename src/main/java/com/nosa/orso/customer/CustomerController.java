@@ -13,14 +13,11 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerServiceImpl customerService;
-    private final CustomerRepository customerRepository;
-
 
 
     @Autowired
-    public CustomerController(CustomerServiceImpl customerService, CustomerRepository customerRepository) {
+    public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
-        this.customerRepository = customerRepository;
     }
 
     @GetMapping("/testing")
