@@ -28,8 +28,8 @@ public class OrsoApplication {
                     false);
 
             Customer customer = new Customer(
-                    "Test Testsson",
-                    "test@mail.com",
+                    "Anders Andersson",
+                    "anders.andersson@gmail.com",
                     4,
                     true,
                     allergies,
