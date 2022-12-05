@@ -1,7 +1,5 @@
 package com.nosa.orso.customer;
 
-
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

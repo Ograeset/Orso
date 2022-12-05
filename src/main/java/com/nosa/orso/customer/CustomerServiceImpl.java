@@ -1,15 +1,13 @@
 package com.nosa.orso.customer;
 
-
-
 import com.nosa.orso.exception.ResourceNotFoundException;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -45,7 +43,6 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
         return ResponseEntity.ok().body(customer);
     }
-
 
     @Override
     public List <Customer> getVegetarians(){

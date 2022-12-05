@@ -36,7 +36,7 @@ public class OrsoApplication {
                     LocalDateTime.now()
             );
 
-            String name = "Test Testson";
+            String name = "Anders Andersson";
 
             customerRepository.findCustomerByName(name)
                     .ifPresentOrElse(c -> {
