@@ -16,6 +16,6 @@ public interface CustomerService {
         ResponseEntity <Customer> updateCustomer(String id, Customer customer);
         ResponseEntity<HttpStatus> deleteCustomer(String id);
         ResponseEntity<HttpStatus> deleteAllCustomers();
-
+        List<Customer> getVegetarians();
 
 }

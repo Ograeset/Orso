@@ -1,6 +1,8 @@
 package com.nosa.orso.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,15 +50,19 @@ public class CustomerController {
 
     @GetMapping("/getCustomer/{id}")
     public ResponseEntity<Customer> getCustomerById (@PathVariable(value = "id")String id){
-
         return customerService.getCustomerById(id);
+    }
+
+    @GetMapping("/getVegetarians")
+    public List<Customer> fetchVegetarians(){
+        return customerService.getVegetarians();
     }
 
     @DeleteMapping("/deleteAllCustomers")
     public ResponseEntity<HttpStatus> deleteAllCustomers() {
         return customerService.deleteAllCustomers();
     }
-
 }
+
 
 
