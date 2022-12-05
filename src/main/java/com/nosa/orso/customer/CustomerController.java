@@ -53,7 +53,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/deleteAllCustomers")
-    public ResponseEntity<HttpStatus> deleteAllCustomers(){
+    public ResponseEntity<HttpStatus> deleteAllCustomers() {
         return customerService.deleteAllCustomers();
     }
 
