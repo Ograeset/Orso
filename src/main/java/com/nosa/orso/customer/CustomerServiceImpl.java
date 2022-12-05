@@ -52,6 +52,8 @@ public class CustomerServiceImpl implements CustomerService {
 
         updateCustomer.setName(customerDetails.getName());
         updateCustomer.setEmail(customerDetails.getEmail());
+        updateCustomer.setNumberCompany(customerDetails.getNumberCompany());
+        updateCustomer.setVegetarians(customerDetails.isVegetarians());
         customerRepository.save(updateCustomer);
         return ResponseEntity.ok(updateCustomer);
     }
