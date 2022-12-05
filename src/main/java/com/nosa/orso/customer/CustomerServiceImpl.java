@@ -46,6 +46,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
+    public List <Customer> getVegetarians(){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("vegetarians").is(true));
+        return customerRepository.getVegetarians(query);
+    }
+
+
+    @Override
     public ResponseEntity <Customer> updateCustomer(String id, Customer customerDetails){
         Customer updateCustomer = customerRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
