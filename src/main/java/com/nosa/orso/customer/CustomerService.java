@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface CustomerService {
@@ -15,5 +16,8 @@ public interface CustomerService {
         ResponseEntity<HttpStatus> deleteCustomer(String id);
         ResponseEntity<HttpStatus> deleteAllCustomers();
         List<Customer> getVegetarians();
+
+        //koden nedanför tillkom efter inlämning. ville mest bara se den "in action" kod hämtad gituser Pigey och deras webservice-projekt
+        ResponseEntity<Customer> updateField(String id, Map<Object, Object> updates);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/customer")
@@ -61,6 +62,15 @@ public class CustomerController {
     @DeleteMapping("/deleteAllCustomers")
     public ResponseEntity<HttpStatus> deleteAllCustomers() {
         return customerService.deleteAllCustomers();
+    }
+
+
+    //koden nedanför tillkom efter inlämning. ville mest bara se den "in action" kod hämtad gituser Pigey och deras webservice-projekt
+
+    @PatchMapping("/updateField/{id}")
+    public ResponseEntity<Customer> updateField (@PathVariable("id") String id, @RequestBody Map<Object, Object> updates) {
+        return customerService.updateField(id, updates);
+
     }
 }
 
