@@ -8,7 +8,7 @@ class App extends Component {
   };
 
   async componentDidMount(){
-    const response = await fetch ('/getAllCustomers');
+    const response = await fetch ('/customer/getAllCustomers');
     const body = await response.json();
     this.setState({customers: body});
   }
