@@ -1,18 +1,18 @@
 package com.nosa.orso.customer;
 
 import com.nosa.orso.exception.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
-
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
-
+@RequiredArgsConstructor
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    @Override
+    //@Override
     public ResponseEntity <Customer> saveCustomer(Customer customer){
         Customer _customer = customerRepository.save(new Customer(
                 customer.getName(),
@@ -36,26 +36,27 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.getCreated()));
         return new ResponseEntity("Customer added successfully " + _customer, HttpStatus.OK);
     }
-    @Override
+
+    //@Override
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    @Override
+    //@Override
     public ResponseEntity<Customer> getCustomerById(String id) {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
         return ResponseEntity.ok().body(customer);
     }
 
-    @Override
+    //@Override
     public List <Customer> getVegetarians(){
         Query query = new Query();
         query.addCriteria(Criteria.where("vegetarians").is(true));
         return customerRepository.getVegetarians(query);
     }
 
-    @Override
+    //@Override
     public ResponseEntity <Customer> updateCustomer(String id, Customer customerDetails){
         Customer updateCustomer = customerRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Customer does not exist with id: " + id));
@@ -69,14 +70,14 @@ public class CustomerServiceImpl implements CustomerService {
         return ResponseEntity.ok(updateCustomer);
     }
 
-    @Override
+    //@Override
     public ResponseEntity<HttpStatus> deleteCustomer(String id) {
         customerRepository.deleteById(id);
         return null;
     }
 
 
-    @Override
+    //@Override
     public ResponseEntity<HttpStatus> deleteAllCustomers() {
         customerRepository.deleteAll();
         return null;
@@ -85,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     //koden nedanför tillkom efter inlämning. ville mest bara se den "in action" kod hämtad gituser Pigey och deras webservice-projekt
 
-    @Override
+    //@Override
     public ResponseEntity<Customer> updateField(String id, Map<Object, Object> updates) {
 
         try {
