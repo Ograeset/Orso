@@ -20,7 +20,7 @@ class CustomerEdit extends Component{
     async componentDidMount(){
         if (this.props.match.params.id !== 'new'){
             const customer = await (await
-            fetch('/customers/${this.props.match.params.id}')).json();
+            fetch('/customer/getAllCustomers/${this.props.match.params.id}')).json();
             this.setState({item: customer});
         }
     }
@@ -38,7 +38,7 @@ class CustomerEdit extends Component{
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/clients' + (item.id ? '/' + item.id : ''), {
+        await fetch('/customer/getAllCustomers' + (item.id ? '/' + item.id : ''), {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +46,36 @@ class CustomerEdit extends Component{
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/customers');
+        this.props.history.push('/customer/getAllCustomers');
+    }
+    render(){
+        const {item} = this.state;
+        const title = <h2>{item.id ? 'Edit Client' : 'Add Client'}</h2>;
+
+        return <div>
+            <AppNavbar/>
+            <Container>
+                {title}
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="name">Name</Label>
+                        <Input type="text" name="name" id="name" value={item.name || ''}
+                               onChange={this.handleChange} autoComplete="name"/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="email">Email</Label>
+                        <Input type="text" name="email" id="email" value={item.email || ''}
+                               onChange={this.handleChange} autoComplete="email"/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Button color="primary" type="submit">Save</Button> {' '}
+                        <Button color="secondary" tag={Link} to="/customer/getAllCustomers">Cancel</Button>
+                    </FormGroup>
+                </Form>
+            </Container>
+        </div>
     }
 }
 export default withRouter(CustomerEdit);
