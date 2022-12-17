@@ -20,8 +20,19 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl(CustomerRepository customerRepository){
         this.customerRepository = customerRepository;
     }
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
 
-    //@Override
+    @Override
+    public ResponseEntity<Customer> getCustomerById(String id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
+        return ResponseEntity.ok().body(customer);
+    }
+
+    @Override
     public ResponseEntity <Customer> saveCustomer(Customer customer){
         Customer _customer = customerRepository.save(new Customer(
                 customer.getName(),
@@ -37,26 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
         return new ResponseEntity("Customer added successfully " + _customer, HttpStatus.OK);
     }
 
-    //@Override
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    //@Override
-    public ResponseEntity<Customer> getCustomerById(String id) {
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
-        return ResponseEntity.ok().body(customer);
-    }
-
-    //@Override
-    public List <Customer> getVegetarians(){
-        Query query = new Query();
-        query.addCriteria(Criteria.where("vegetarians").is(true));
-        return customerRepository.getVegetarians(query);
-    }
-
-    //@Override
+    @Override
     public ResponseEntity <Customer> updateCustomer(String id, Customer customerDetails){
         Customer updateCustomer = customerRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Customer does not exist with id: " + id));
@@ -70,38 +62,9 @@ public class CustomerServiceImpl implements CustomerService {
         return ResponseEntity.ok(updateCustomer);
     }
 
-    //@Override
+    @Override
     public ResponseEntity<HttpStatus> deleteCustomer(String id) {
         customerRepository.deleteById(id);
         return null;
     }
-
-
-    //@Override
-    public ResponseEntity<HttpStatus> deleteAllCustomers() {
-        customerRepository.deleteAll();
-        return null;
-    }
-
-
-    //koden nedanför tillkom efter inlämning. ville mest bara se den "in action" kod hämtad gituser Pigey och deras webservice-projekt
-
-    //@Override
-    public ResponseEntity<Customer> updateField(String id, Map<Object, Object> updates) {
-
-        try {
-            Customer updateCustomerField = customerRepository.findById(id).get();
-
-            updates.forEach((key, value) -> {
-                Field field = ReflectionUtils.findField(Customer.class, (String) key);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, updateCustomerField, value);
-            });
-            customerRepository.save(updateCustomerField);
-
-            return new ResponseEntity<>(updateCustomerField, HttpStatus.OK);
-        }catch (Exception e ) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-}
 }

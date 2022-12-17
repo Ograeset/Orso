@@ -11,20 +11,19 @@ class CustomerList extends Component{
     }
 
     componentDidMount() {
-        fetch('/customer/getAllCustomers')
+        fetch('')
             .then(response => response.json())
             .then(data => this.setState({customers: data}));
     }
     async remove (id){
-        await fetch('/customer/${id}',{
+        await fetch('/guests/${id}',{
             method: 'DELETE',
             headers:{
                 'Accept': 'application.json'
             }
         }).then(() => {
-            let updateCustomers = [...this.state.customers].filter(i =>
-            i.id !== id);
-            this.setState({customers: updateCustomers});
+            let updatedCustomers = [...this.state.customers].filter(i => i.id !== id);
+            this.setState({customers: updatedCustomers});
         });
     }
     render(){
@@ -34,13 +33,12 @@ class CustomerList extends Component{
             return <p>Loading...</p>
         }
         const customerList = customers.map(customer => {
-            return <tr key={client.id}>
+            return <tr key={customer.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{customer.name}</td>
                 <td>{customer.email}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size = "sm" color = "primary" tag={Link}
-                        to={"/customers/" + customer.id}>Edit</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/guests/" + customer.id}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(customer.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -52,7 +50,7 @@ class CustomerList extends Component{
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/customers/new">Add Customer</Button>
+                        <Button color="success" tag={Link} to="/getAllCustomers/new">Add Customer</Button>
                     </div>
                     <h3>Customers</h3>
                     <Table className="mt-4">

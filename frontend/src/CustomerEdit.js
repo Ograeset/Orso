@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import { Link, withRouter} from "react-router-dom";
 import { Button,Container, Form, FormGroup, Input, Label } from "reactstrap";
-import AppNavBar from '/.AppNavBar';
+import AppNavbar from "./AppNavbar";
+
+
 class CustomerEdit extends Component{
     emptyItem ={
         name:'',
@@ -18,9 +20,8 @@ class CustomerEdit extends Component{
     }
 
     async componentDidMount(){
-        if (this.props.match.params.id !== 'new'){
-            const customer = await (await
-            fetch('/customer/getAllCustomers/${this.props.match.params.id}')).json();
+        if (this.props.match.params.id !== 'new') {
+            const customer = await (await fetch('/guests/${this.props.match.params.id}')).json();
             this.setState({item: customer});
         }
     }
@@ -38,7 +39,7 @@ class CustomerEdit extends Component{
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/customer/getAllCustomers' + (item.id ? '/' + item.id : ''), {
+        await fetch('/guests' + (item.id ? '/' + item.id : ''), {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +47,7 @@ class CustomerEdit extends Component{
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/customer/getAllCustomers');
+        this.props.history.push('/guests');
     }
     render(){
         const {item} = this.state;
@@ -71,7 +72,7 @@ class CustomerEdit extends Component{
 
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button> {' '}
-                        <Button color="secondary" tag={Link} to="/customer/getAllCustomers">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/guests">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>
