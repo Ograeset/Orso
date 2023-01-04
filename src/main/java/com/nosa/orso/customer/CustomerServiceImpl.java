@@ -2,37 +2,34 @@ package com.nosa.orso.customer;
 
 import com.nosa.orso.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
+
 
 @RequiredArgsConstructor
 @Service
 public class CustomerServiceImpl implements CustomerService {
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository){
+    //Dont need constuctor when lombok is in place
+   /* public CustomerServiceImpl(CustomerRepository customerRepository){
         this.customerRepository = customerRepository;
-    }
-    @Override
+    }*/
+
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    @Override
+
     public ResponseEntity<Customer> getCustomerById(String id) {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id: " + id));
         return ResponseEntity.ok().body(customer);
     }
 
-    @Override
+
     public ResponseEntity <Customer> saveCustomer(Customer customer){
         Customer _customer = customerRepository.save(new Customer(
                 customer.getName(),
@@ -48,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
         return new ResponseEntity("Customer added successfully " + _customer, HttpStatus.OK);
     }
 
-    @Override
+
     public ResponseEntity <Customer> updateCustomer(String id, Customer customerDetails){
         Customer updateCustomer = customerRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Customer does not exist with id: " + id));
@@ -62,7 +59,6 @@ public class CustomerServiceImpl implements CustomerService {
         return ResponseEntity.ok(updateCustomer);
     }
 
-    @Override
     public ResponseEntity<HttpStatus> deleteCustomer(String id) {
         customerRepository.deleteById(id);
         return null;

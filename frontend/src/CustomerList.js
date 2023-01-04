@@ -11,7 +11,7 @@ class CustomerList extends Component{
     }
 
     componentDidMount() {
-        fetch('')
+        fetch('/guests')
             .then(response => response.json())
             .then(data => this.setState({customers: data}));
     }
@@ -19,7 +19,8 @@ class CustomerList extends Component{
         await fetch('/guests/${id}',{
             method: 'DELETE',
             headers:{
-                'Accept': 'application.json'
+                'Accept': 'application.json',
+                'Content-Type': 'application/json'
             }
         }).then(() => {
             let updatedCustomers = [...this.state.customers].filter(i => i.id !== id);
@@ -30,7 +31,7 @@ class CustomerList extends Component{
         const {customers, isLoading} = this.state;
 
         if(isLoading){
-            return <p>Loading...</p>
+            return <p>Loading...</p>;
         }
         const customerList = customers.map(customer => {
             return <tr key={customer.id}>
@@ -50,7 +51,7 @@ class CustomerList extends Component{
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/getAllCustomers/new">Add Customer</Button>
+                        <Button color="success" tag={Link} to="/guests/new">Add Customer</Button>
                     </div>
                     <h3>Customers</h3>
                     <Table className="mt-4">
@@ -67,7 +68,7 @@ class CustomerList extends Component{
                     </Table>
                 </Container>
             </div>
-        )
+        );
     }
 
 }
