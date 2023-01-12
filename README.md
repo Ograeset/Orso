@@ -1,5 +1,8 @@
 # Orso
 
+
+School project from course "Webservices in Java" 
+
 För att starta programmet så öppna först filen docker-composer.yaml och kör den från toppen.
 
 Gå sedan in i filen src/main/java/com/nosa/orso/OrsoApplication.java och kör programmet där.
